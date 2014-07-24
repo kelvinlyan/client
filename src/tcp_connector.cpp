@@ -1,16 +1,31 @@
 #include "tcp_connector.h"
 
 
-tcp_connector::Tcp_Pointer tcp_connector::create(boost::asio::io_service& io_service, tcp::resolver::iterator endpoint_iterator)
+tcp_connector::Tcp_Pointer tcp_connector::create(boost::asio::io_service& io_service, unsigned int buff_size)
 {
-	return tcp_connector::Tcp_Pointer(new tcp_connector(io_service, endpoint_iterator));
+	return tcp_connector::Tcp_Pointer(new tcp_connector(io_service, buff_size));
 }
 
-tcp_connector::tcp_connector(boost::asio::io_service& io_service, tcp::resolver::iterator endpoint_iterator)
-	: _io_service(io_service), _socket(io_service)
+tcp_connector::tcp_connector(boost::asio::io_service& io_service, unsigned int buff_size)
+	: _io_service(io_service), _socket(io_service), _buff_size(buff_size)
 {
+	_read_buff = (char*)malloc(buff_size);
+}
+
+void tcp_connector::connect(const string& ip, const string& port)
+{
+	tcp::resolver resolver(_io_service);
+	tcp::resolver::query query(ip, port);
+	tcp::resolver::iterator endpoint_iterator = resolver.resolve(query);
+	
 	boost::asio::async_connect(_socket, endpoint_iterator, 
 		boost::bind(&tcp_connector::handle_connect, shared_from_this(), boost::asio::placeholders::error));
+}
+
+tcp_connector::~tcp_connector()
+{
+	do_close();
+	free(_read_buff);
 }
 
 void tcp_connector::set_handler(Msg_Handler handler)
@@ -52,15 +67,23 @@ void tcp_connector::handle_read(const boost::system::error_code& error, std::siz
 {
 	if(!error)
 	{
-		std::size_t len = _socket.read_some(boost::asio::buffer(_read_buff, _max_buff_size));
-
-		Log("read %d bytes\n", len);
-		if(_handler)
+		std::size_t len = 0;
+		try
 		{
-			string msg(_read_buff, len);
-			_handler(msg);
+			len = _socket.read_some(boost::asio::buffer(_read_buff, _buff_size));
+			Log("read %d bytes\n", len);
+			if(_handler)
+			{
+				string msg(_read_buff, len);
+				_handler(msg);
+			}
+			post_read0();
 		}
-		post_read0();
+		catch(boost::system::system_error exception)
+		{
+			Log("read error: %s\n", exception.what());
+			do_close();
+		}
 	}
 	else
 	{

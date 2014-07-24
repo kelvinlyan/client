@@ -26,7 +26,7 @@ $(OBJ)/%.d : $(SRC)/%.cpp
 	@$(CC) -MM $< $(CCFLAGS) > $@.temp;
 	@sed 's,\($*\)\.o[ :]*,$(OBJ)/\1.d : ,g' < $@.temp >> $@;
 	@sed 's,\($*\)\.o[ :]*,$(OBJ)/\1.o : ,g' < $@.temp >> $@;
-	@echo -e "\t"$(CC) -c $< -o $(subst .d,.o,$@) $(CCFLAGS) >> $@;
+	@echo -e "\t"$(CC) -c $< -g -o $(subst .d,.o,$@) $(CCFLAGS) >> $@;
 	@rm -f $@.temp;
 
 $(BIN)/$(TARGET) : $(objs)

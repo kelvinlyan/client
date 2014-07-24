@@ -31,7 +31,6 @@ class client : public noncopyable
 		void handle_msg(string& msg);
 
 	private:
-		static tcp::resolver::iterator get_resolver_iterator(boost::asio::io_service& io_service, const string& ip, const string& port);
 		tcp_connector::Tcp_Pointer _connector;
 
 		int _player_id;

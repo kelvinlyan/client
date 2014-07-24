@@ -1,20 +1,14 @@
 #include "client.h"
 
 client::client(boost::asio::io_service& io_service, const string& ip, const string& port)
-	: _connector(tcp_connector::create(io_service, get_resolver_iterator(io_service, ip, port))), _player_id(0), _net_id(0)
+	: _connector(tcp_connector::create(io_service)), _player_id(0), _net_id(0)
 {
+	_connector->connect(ip, port);
 }
 
 void client::set_handler(tcp_connector::Msg_Handler& handler)
 {
 	_connector->set_handler(handler);
-}
-
-tcp::resolver::iterator client::get_resolver_iterator(boost::asio::io_service& io_service, const string& ip, const string& port)
-{
-	tcp::resolver resolver(io_service);
-	tcp::resolver::query query(ip, port);
-	return resolver.resolve(query);
 }
 
 void client::login(const string& id, const string& passwd)
