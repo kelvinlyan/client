@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Config>
+	<Connection Ip="10.20.202.233" Port="2118" />
+	<Protocols File="../etc/sample.xml" />
+	<Acount Id="test02" Passwd="111111" />
+</Config>

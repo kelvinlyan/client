@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Protocols>
+	<DataFormat Protocol="server_info_req"  Index="1045"  Type=""  Sample="" />
+	<DataFormat Protocol="building_update_req"  Index="1050"  Type=""  Sample="" />
+	<DataFormat Protocol="building_upgrade_req"  Index="1051"  Type=""  Sample="" />
+	<DataFormat Protocol="building_cd_clear_req"  Index="1052"  Type=""  Sample="" />
+	<DataFormat Protocol="building_levy_req"  Index="1053"  Type=""  Sample="" />
+	<DataFormat Protocol="building_levy_update_req"  Index="1054"  Type=""  Sample="" />
+	<DataFormat Protocol="building_levy_cd_clear_req"  Index="1055"  Type=""  Sample="" />
+
+	<DataFormat Protocol="war_story_update_req"  Index="1100"  Type=""  Sample="" />
+	<DataFormat Protocol="war_story_battle_with_nqc_req"  Index="1101"  Type=""  Sample="" />
+
+	<DataFormat Protocol="pilot_update_req"  Index="1150"  Type=""  Sample="" />
+	<DataFormat Protocol="pilot_enlist_req"  Index="1151"  Type=""  Sample="" />
+	<DataFormat Protocol="pilot_fire_req"  Index="1152"  Type=""  Sample="" />
+	<DataFormat Protocol="pilot_surmount_req"  Index="1153"  Type=""  Sample="" />
+	<DataFormat Protocol="equip_pilot_req"  Index="1154"  Type=""  Sample="" />
+	<DataFormat Protocol="off_equip_pilot_req"  Index="1155"  Type=""  Sample="" />
+	<DataFormat Protocol="pilot_upgrade_attribute_req"  Index="1156"  Type=""  Sample="" />
+	<DataFormat Protocol="pilot_replace_attribute_req"  Index="1157"  Type=""  Sample="" />
+	<DataFormat Protocol="pilot_revert_attribute_req"  Index="1158"  Type=""  Sample="" />
+	<DataFormat Protocol="pilot_core_mode_convert_req"  Index="1159"  Type=""  Sample="" />
+	<DataFormat Protocol="pilot_core_fast_req"  Index="1160"  Type=""  Sample="" />
+	<DataFormat Protocol="pilot_core_cd_clear_req"  Index="1161"  Type=""  Sample="" />
+	<DataFormat Protocol="pilot_surmount_cd_clear_req"  Index="1162"  Type=""  Sample="" />
+</Protocols>
+
+
+
+
+
+
+
+
+
+
+
+
