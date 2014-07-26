@@ -74,8 +74,8 @@ void tcp_connector::handle_read(const boost::system::error_code& error, std::siz
 			Log("read %d bytes\n", len);
 			if(_handler)
 			{
-				string msg(_read_buff, len);
-				_handler(msg);
+				string str(_read_buff, len);
+				_handler(str);
 			}
 			post_read0();
 		}

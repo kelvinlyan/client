@@ -18,7 +18,33 @@ int main()
 	
 
 	while(1)
-		sleep(1);
+	{
+		string s1, s2;
+		cin >> s1 >> s2;
+		Json::Value msg;
+		if(s2 != "null")
+		{
+			msg["msg"] = Json::arrayValue;
+			Json::Value& ref = msg["msg"];
+			int begin = 0;
+			while(true)
+			{
+			 	int pos = s2.find(',', begin);
+				if(pos != string::npos)
+				{
+					ref.append(atoi(s2.substr(begin, pos - begin).c_str()));
+					begin = pos + 1;
+				}
+				else
+				{
+					ref.append(atoi(s2.substr(begin).c_str()));
+					break;
+				}
+			}
+		}
+		c.write(atoi(s1.c_str()), msg);
+			
+	}
 }
 
 

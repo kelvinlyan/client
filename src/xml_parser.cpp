@@ -196,14 +196,18 @@ bool xml_parser::modify_first_attribute_by_condition(const string& strNodeName, 
 	if(!_get_first_node_by_condition(pRoot, strNodeName, condition, pNode))
 		return false;
 
-	for(TiXmlAttribute* pAttr = pNode->FirstAttribute(); pAttr; pAttr = pAttr->Next())
+	for(map<string, string>::iterator iter = attrs.begin(); iter != attrs.end(); ++iter)
+	{
+		pNode->SetAttribute(iter->first.c_str(), iter->second.c_str());
+		pNode->SetAttribute(iter->first.c_str(), iter->second.c_str());
+	}
+	/*for(TiXmlAttribute* pAttr = pNode->FirstAttribute(); pAttr; pAttr = pAttr->Next())
 	{
 		map<string, string>::iterator iter = attrs.find(pAttr->Name());
 		if(iter != attrs.end())
 			pAttr->SetValue(iter->second.c_str());
-		else
-			pNode->SetAttribute(iter->first.c_str(), iter->second.c_str());
-	}
+	}*/
+	
 
 	_pDoc->SaveFile();
 
