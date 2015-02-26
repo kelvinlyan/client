@@ -11,7 +11,7 @@ TARGET := test
 
 CC := g++
 CCFLAGS := -I$(INC)
-LDFLAGS := -lboost_system -lboost_thread -ljsoncpp -ltinyxml
+LDFLAGS := -lboost_system -lboost_thread -ljsoncpp -ltinyxml 
 CCFLAGS += $(LDFLAGS)
 
 vpath %.h $(INC)
@@ -31,6 +31,7 @@ $(OBJ)/%.d : $(SRC)/%.cpp
 
 $(BIN)/$(TARGET) : $(objs)
 	$(CC) -g -o $(BIN)/$(TARGET) $^ $(CCFLAGS);
+	@echo Target: ./$(BIN)/$(TARGET) Done
 
 include $(deps)
 

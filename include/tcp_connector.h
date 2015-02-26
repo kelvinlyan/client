@@ -18,7 +18,7 @@ class tcp_connector : public boost::enable_shared_from_this<tcp_connector>
 {
 	public:
 		enum{
-			_default_buff_size = 1024
+			_default_buff_size = 102400
 		};
 
 		typedef boost::function<void(string&)> Msg_Handler;
@@ -31,6 +31,7 @@ class tcp_connector : public boost::enable_shared_from_this<tcp_connector>
 		void set_handler(Msg_Handler handler);
 		void write(const string& msg);
 		void close();
+		boost::asio::io_service& get_io_service(){ return _io_service; }
 
 	private:
 		tcp_connector(boost::asio::io_service& io_service, unsigned int buff_size = _default_buff_size);

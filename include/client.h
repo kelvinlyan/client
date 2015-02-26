@@ -37,8 +37,11 @@ class client : public noncopyable
 		void handle_msg(string& str);
 
 	private:
+		void start_timer();
+		void timer_handler(const boost::system::error_code& e);
 		tcp_connector::Tcp_Pointer _connector;
 		map<int, time_t> _time_checker;
+		boost::asio::deadline_timer _timer;
 
 		int _player_id;
 		int _net_id;

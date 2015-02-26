@@ -1,4 +1,8 @@
 #include "tcp_connector.h"
+#include "color.hpp"
+#include <iostream>
+
+using namespace color;
 
 
 tcp_connector::Tcp_Pointer tcp_connector::create(boost::asio::io_service& io_service, unsigned int buff_size)
@@ -47,7 +51,7 @@ void tcp_connector::handle_connect(const boost::system::error_code& error)
 {
 	if(!error)
 	{
-		Log("connect success\n");
+		std::cout << mRED("connect success\n") << std::endl;
 		post_read0();
 	}
 	else
@@ -107,7 +111,7 @@ void tcp_connector::handle_write(const boost::system::error_code& error)
 {
 	if(!error)
 	{
-		Log("write %d bytes\n", _write_queue.front().size());
+		//Log("write %d bytes\n", _write_queue.front().size());
 		_write_queue.pop_front();
 		if(!_write_queue.empty())
 		{

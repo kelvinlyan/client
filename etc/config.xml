@@ -2,5 +2,5 @@
 <Config>
 	<Connection Ip="10.20.202.233" Port="2118" />
 	<Protocols File="../etc/sample.xml" />
-	<Acount Id="test07" Passwd="111111" />
+	<Acount Id="999" Passwd="test08" />
 </Config>
