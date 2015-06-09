@@ -20,25 +20,25 @@ namespace color
 #define CREATE(color) \
 	static std::string m##color(const char* pstr) \
 	{ \
-		char buff[1024]; \
+		char buff[10240]; \
 		sprintf(buff, "\033[%dm\033[1m%s\033[0m", color, pstr); \
 		return string(buff); \
 	} \
 	static std::string m##color(int num) \
 	{ \
-		char buff[1024]; \
+		char buff[10240]; \
 		sprintf(buff, "\033[%dm\033[1m%d\033[0m", color, num); \
 		return string(buff); \
 	} \
 	static std::string m##color(unsigned int num) \
 	{ \
-		char buff[1024]; \
+		char buff[10240]; \
 		sprintf(buff, "\033[%dm\033[1m%u\033[0m", color, num); \
 		return string(buff); \
 	} \
 	static std::string m##color(double num) \
 	{ \
-		char buff[1024]; \
+		char buff[10240]; \
 		sprintf(buff, "\033[%dm\033[1m%lf\033[0m", color, num); \
 		return string(buff); \
 	} \
